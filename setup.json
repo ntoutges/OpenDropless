@@ -1,0 +1,288 @@
+[
+    {
+        "name": "reservoir-tl",
+        "type": "tile",
+        "size": {
+            "x": 4,
+            "y": 3
+        },
+        "pos": {
+            "x": 0,
+            "y": 5
+        },
+        "packet": "0:3"
+    },
+    {
+        "name": "grabber-tl",
+        "type": "tile",
+        "size": {
+            "x": 1.5,
+            "y": 1
+        },
+        "pos": {
+            "x": 3,
+            "y": 6
+        },
+        "packet": "0:2"
+    },
+    {
+        "name": "spreader-tl",
+        "type": "tile",
+        "size": {
+            "x": 1,
+            "y": 1
+        },
+        "pos": {
+            "x": 4,
+            "y": 7
+        },
+        "packet": "0:1"
+    },
+    {
+        "name": "spreader-tl",
+        "type": "tile",
+        "size": {
+            "x": 1,
+            "y": 1
+        },
+        "pos": {
+            "x": 4,
+            "y": 5
+        },
+        "packet": "0:1"
+    },
+    {
+        "name": "exit-tl",
+        "type": "tile",
+        "size": {
+            "x": 1,
+            "y": 1
+        },
+        "pos": {
+            "x": 4.5,
+            "y": 6
+        },
+        "packet": "0:0"
+    },
+
+
+    {
+        "name": "reservoir-bl",
+        "type": "tile",
+        "size": {
+            "x": 4,
+            "y": 3
+        },
+        "pos": {
+            "x": 0,
+            "y": 0
+        },
+        "packet": "0:4"
+    },
+    {
+        "name": "grabber-bl",
+        "type": "tile",
+        "size": {
+            "x": 1.5,
+            "y": 1
+        },
+        "pos": {
+            "x": 3,
+            "y": 1
+        },
+        "packet": "0:5"
+    },
+    {
+        "name": "spreader-bl",
+        "type": "tile",
+        "size": {
+            "x": 1,
+            "y": 1
+        },
+        "pos": {
+            "x": 4,
+            "y": 2
+        },
+        "packet": "0:6"
+    },
+    {
+        "name": "spreader-bl",
+        "type": "tile",
+        "size": {
+            "x": 1,
+            "y": 1
+        },
+        "pos": {
+            "x": 4,
+            "y": 0
+        },
+        "packet": "0:6"
+    },
+    {
+        "name": "exit-bl",
+        "type": "tile",
+        "size": {
+            "x": 1,
+            "y": 1
+        },
+        "pos": {
+            "x": 4.5,
+            "y": 1
+        },
+        "packet": "0:7"
+    },
+
+
+    {
+        "name": "reservoir-tr",
+        "type": "tile",
+        "size": {
+            "x": 4,
+            "y": 3
+        },
+        "pos": {
+            "x": 21,
+            "y": 5
+        },
+        "packet": "15:3"
+    },
+    {
+        "name": "grabber-tr",
+        "type": "tile",
+        "size": {
+            "x": 1.5,
+            "y": 1
+        },
+        "pos": {
+            "x": 20.5,
+            "y": 6
+        },
+        "packet": "15:2"
+    },
+    {
+        "name": "spreader-tr",
+        "type": "tile",
+        "size": {
+            "x": 1,
+            "y": 1
+        },
+        "pos": {
+            "x": 20,
+            "y": 7
+        },
+        "packet": "15:1"
+    },
+    {
+        "name": "spreader-tr",
+        "type": "tile",
+        "size": {
+            "x": 1,
+            "y": 1
+        },
+        "pos": {
+            "x": 20,
+            "y": 5
+        },
+        "packet": "15:1"
+    },
+    {
+        "name": "exit-tr",
+        "type": "tile",
+        "size": {
+            "x": 1,
+            "y": 1
+        },
+        "pos": {
+            "x": 19.5,
+            "y": 6
+        },
+        "packet": "15:0"
+    },
+
+
+    {
+        "name": "reservoir-br",
+        "type": "tile",
+        "size": {
+            "x": 4,
+            "y": 3
+        },
+        "pos": {
+            "x": 21,
+            "y": 0
+        },
+        "packet": "15:4"
+    },
+    {
+        "name": "grabber-br",
+        "type": "tile",
+        "size": {
+            "x": 1.5,
+            "y": 1
+        },
+        "pos": {
+            "x": 20.5,
+            "y": 1
+        },
+        "packet": "15:5"
+    },
+    {
+        "name": "spreader-br",
+        "type": "tile",
+        "size": {
+            "x": 1,
+            "y": 1
+        },
+        "pos": {
+            "x": 20,
+            "y": 2
+        },
+        "packet": "15:6"
+    },
+    {
+        "name": "spreader-br",
+        "type": "tile",
+        "size": {
+            "x": 1,
+            "y": 1
+        },
+        "pos": {
+            "x": 20,
+            "y": 0
+        },
+        "packet": "15:6"
+    },
+    {
+        "name": "exit-br",
+        "type": "tile",
+        "size": {
+            "x": 1,
+            "y": 1
+        },
+        "pos": {
+            "x": 19.5,
+            "y": 1
+        },
+        "packet": "15:7"
+    },
+
+
+    {
+        "name": "body",
+        "type": "grid",
+        "size": {
+            "x": 14,
+            "y": 8
+        },
+        "pos": {
+            "x": 5.5,
+            "y": 0
+        },
+        "tile": {
+            "x": 1,
+            "y": 1
+        },
+        "invy": true,
+        "packet": "1:0"
+    }
+]

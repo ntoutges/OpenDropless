@@ -1,0 +1,5 @@
+{
+  "devDependencies": {
+    "@types/dom-serial": "^1.0.6"
+  }
+}
