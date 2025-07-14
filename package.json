@@ -1,5 +1,6 @@
 {
   "devDependencies": {
-    "@types/dom-serial": "^1.0.6"
+    "@types/dom-serial": "^1.0.6",
+    "vite": "^7.0.4"
   }
 }

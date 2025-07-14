@@ -1,4 +1,11 @@
 An extremely basic simulator for the OpenDrop device.\
+
+## Run Information
+To run this project:
+1. Install npm, if you do not have it available.
+2. Run the command `npm install` in this project.
+3. Run the command `vite` in this project. This should allow you to connect to a webpage running on `localhost:5173`.
+
 This project features two modes of connection:
 
 1. USB (Available on most chromium-based browsers)
