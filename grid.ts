@@ -192,6 +192,15 @@ export class Grid {
         }
     }
 
+    clear() {
+        for (const tiles of this.tiles.values()) {
+            for (const tile of tiles) {
+                tile.active = false;
+            }
+        }
+        this.render();
+    }
+
     /**
      * Emphasize some field
      * @param byte 

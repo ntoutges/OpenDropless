@@ -103,7 +103,40 @@ body {
 #rx-toggle.paused::after {
     content: 'PLAY';
 }
+#rx-toggle.paused {
+    background: white;
+    color: black;
+}
 
+
+/* Hide if not paused */
+body:not(:has(#rx-toggle.paused)) #pause-overlay {
+    display: none;
+}
+
+#pause-overlay {
+    position: fixed;
+    left: 0px;
+    top: 0px;
+    width: 100vw;
+    height: 100vh;
+
+    animation: 3s infinite cubic-bezier(0.17, 0.53, 0.82, 0.46) paused-animation;
+    pointer-events: none;
+    z-index: 10000;
+}
+
+@keyframes paused-animation {
+    0% {
+        box-shadow: inset 0px 0px 20px 10px transparent;
+    }
+    50% {
+        box-shadow: inset 0px 0px 20px 10px #ffff0054;
+    }
+    100% {
+        box-shadow: inset 0px 0px 20px 10px transparent;
+    }
+}
 
 /* Tooltip styling */
 .grid-tooltip {

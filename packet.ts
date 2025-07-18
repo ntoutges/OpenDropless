@@ -59,6 +59,10 @@ export class PacketExplorer {
         }
     }
 
+    public clear() {
+        this.table.innerHTML = '';
+    }
+
     private onEnter(e: PointerEvent) {
         if (!(e.target instanceof HTMLElement) || !e.target.matches(".byte-bits > *")) return;
         const idx = +(e.target.dataset.idx || -1);

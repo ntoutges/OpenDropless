@@ -27,6 +27,9 @@ var reader: ReadableStreamDefaultReader<any> | null = null;
 var paused: boolean = false;
 
 function onConnect(mode: "ser" | "sok") {
+    // Clear the current error
+    overlay.error("");
+
     switch (mode) {
         case "ser":
             onConnectSer();
@@ -43,9 +46,6 @@ async function onConnectSer() {
         overlay.error("The Web Serial API is not available on your browser.");
         return;
     }
-
-    // Clear the current error
-    overlay.error("");
 
     try {
         const p = await navigator.serial.requestPort();
@@ -72,6 +72,10 @@ function onConnectSok(host: string) {
 
     socket.onclose = (ev) => {
         $("#disconnect")!.click();
+    }
+
+    socket.onerror = (err) => {
+        overlay.error("Websocket Error: Are you sure the server is running?");
     }
 
     socket.onmessage = (ev) => {
@@ -148,6 +152,8 @@ $("#disconnect")!.addEventListener("click", async () => {
     }
 
     overlay.show();
+    g.clear();
+    e.clear();
 });
 
 document.body.addEventListener("keydown", (e) => {
