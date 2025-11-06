@@ -1,4 +1,4 @@
-An extremely basic simulator for the OpenDrop device.\
+An extremely basic simulator for the OpenDrop device.
 
 ## Run Information
 To run this project:

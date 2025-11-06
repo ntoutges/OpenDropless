@@ -1,7 +1,7 @@
-import { Grid } from "./grid.js"
+import { Grid } from "./grid.js";
 import { ConnectModal } from "./modal.js";
 import { PacketExplorer } from "./packet.js";
-import setup from "./setup.json"
+import setup from "./setup.json";
 
 const $ = document.querySelector.bind(document) as (s: string) => HTMLElement;
 
@@ -19,7 +19,6 @@ const e = new PacketExplorer($("#packet-container")!, (idx) => {
 
 const overlay = new ConnectModal(onConnect);
 overlay.show();
-
 
 var port: SerialPort | null = null;
 var socket: WebSocket | null = null;
@@ -44,6 +43,9 @@ async function onConnectSer() {
     // Indicate the lack of serial availability
     if (!navigator.serial) {
         overlay.error("The Web Serial API is not available on your browser.");
+        logEvent(analytics, "con_ser_fail", {
+            userAgent: window.navigator.userAgent,
+        });
         return;
     }
 
@@ -51,37 +53,57 @@ async function onConnectSer() {
         const p = await navigator.serial.requestPort();
         await p.open({ baudRate: 115200 });
 
+        logEvent(analytics, "con_ser_open", {
+            userAgent: window.navigator.userAgent,
+            portInfo: p.getInfo(),
+        });
+
         port = p;
         overlay.hide();
         paused = false;
         $("#rx-toggle")!.classList.remove("paused");
         startPortRead();
-    }
-    catch(err) {
+    } catch (err) {
         overlay.error(typeof err == "string" ? err : (err as Error).message);
     }
 }
 
 function onConnectSok(host: string) {
     socket = new WebSocket(host);
+    overlay.info(`Connecting to websocket at ${host}`);
+
+    const start = performance.now();
 
     // Socket connection ready!
     socket.onopen = (ev) => {
         overlay.hide();
-    }
+        overlay.error("");
+
+        const end = performance.now();
+        logEvent(analytics, "con_sok_open", {
+            userAgent: window.navigator.userAgent,
+            connectionTime: end - start,
+        });
+    };
 
     socket.onclose = (ev) => {
         $("#disconnect")!.click();
-    }
+        overlay.error("");
+    };
 
     socket.onerror = (err) => {
         overlay.error("Websocket Error: Are you sure the server is running?");
-    }
+        overlay.error("");
+
+        logEvent(analytics, "con_sok_fail", {
+            userAgent: window.navigator.userAgent,
+        });
+    };
 
     socket.onmessage = (ev) => {
         const packet = ev.data.split(",").map((b: string) => +b.trim());
         onPacket(packet);
-    }
+    };
 }
 
 const TX_LEN = 32; // Number of bytes per packet
@@ -97,26 +119,26 @@ async function startPortRead() {
         try {
             while (true) {
                 const { value, done } = await reader.read();
-                
+
                 // Reader has eben canceled
                 if (done) break outer;
 
                 const now = performance.now();
-                const isTimeout = (lastTX && (now - lastTX) > TX_GAP);
+                const isTimeout = lastTX && now - lastTX > TX_GAP;
                 if (bytes.length >= TX_LEN || isTimeout) {
-                    const packet = isTimeout ? bytes.splice(0) : bytes.splice(0, TX_LEN);
+                    const packet = isTimeout
+                        ? bytes.splice(0)
+                        : bytes.splice(0, TX_LEN);
                     onPacket(packet);
                 }
 
                 lastTX = now;
                 bytes.push(...(value as Uint8Array));
             }
-        }
-        catch(err) {
+        } catch (err) {
             $("#disconnect")!.click(); // Disconnect
             console.log("Disconnected!");
-        }
-        finally {
+        } finally {
             reader.releaseLock();
         }
     }
@@ -159,3 +181,20 @@ $("#disconnect")!.addEventListener("click", async () => {
 document.body.addEventListener("keydown", (e) => {
     if (e.key == " ") $("#rx-toggle")!.click();
 });
+
+// Analytics
+import { initializeApp } from "firebase/app";
+import { getAnalytics, logEvent } from "firebase/analytics";
+
+const firebaseConfig = {
+    apiKey: "AIzaSyAFDBnzdQdG2Ct1chtqmOsn7LMqZz06Yo4",
+    authDomain: "opendropless.firebaseapp.com",
+    projectId: "opendropless",
+    storageBucket: "opendropless.firebasestorage.app",
+    messagingSenderId: "572389488115",
+    appId: "1:572389488115:web:2b1e6019d8907afddb4e86",
+    measurementId: "G-GVYWXLFNB6",
+};
+
+const app = initializeApp(firebaseConfig);
+const analytics = getAnalytics(app);

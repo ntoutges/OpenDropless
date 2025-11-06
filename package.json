@@ -1,6 +1,12 @@
 {
-  "devDependencies": {
-    "@types/dom-serial": "^1.0.6",
-    "vite": "^7.0.4"
-  }
+    "scripts": {
+        "build": "vite build"
+    },
+    "devDependencies": {
+        "@types/dom-serial": "^1.0.6",
+        "vite": "^7.0.4"
+    },
+    "dependencies": {
+        "firebase": "^12.5.0"
+    }
 }

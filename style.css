@@ -35,18 +35,32 @@ body {
 .grid-highlights {
     position: absolute;
     background: radial-gradient(transparent, #c6c46187);
-    box-shadow: 0px 0px 10px 5px #c6c46187
+    box-shadow: 0px 0px 10px 5px #c6c46187;
 }
 
-#copyright {
+.footer {
     position: fixed;
     bottom: 0px;
     right: 5px;
-    color: #838383;
     z-index: 10000000;
 
-    font-family: 'Courier New', Courier, monospace;
+    display: flex;
+    flex-direction: column;
+    align-items: end;
+    gap: 8px;
+}
+
+.footer > * {
+    font-family: "Courier New", Courier, monospace;
     text-decoration: none;
+}
+
+#copyright {
+    color: #838383;
+}
+
+#src {
+    color: #b9c8b9;
 }
 
 @media (min-width: 1400px) {
@@ -90,7 +104,7 @@ body {
     color: white;
     background: #2c2c2c;
 
-    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
 
 #controls > div:hover {
@@ -98,16 +112,15 @@ body {
 }
 
 #rx-toggle::after {
-    content: 'PAUSE';
+    content: "PAUSE";
 }
 #rx-toggle.paused::after {
-    content: 'PLAY';
+    content: "PLAY";
 }
 #rx-toggle.paused {
     background: white;
     color: black;
 }
-
 
 /* Hide if not paused */
 body:not(:has(#rx-toggle.paused)) #pause-overlay {
@@ -151,7 +164,7 @@ body:not(:has(#rx-toggle.paused)) #pause-overlay {
     z-index: 1000;
     white-space: nowrap;
     display: none;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
 
     translate: -100% -100%;
 }
@@ -184,7 +197,6 @@ body:not(:has(#rx-toggle.paused)) #pause-overlay {
 .tooltip-state.off {
     color: #f44336; /* red dot for "off" */
 }
-
 
 /* Packet explorer styling */
 .packet-explorer {
@@ -261,65 +273,69 @@ body:not(:has(#rx-toggle.paused)) #pause-overlay {
 
 /* Connect Overlay stuff */
 .connect-overlay {
-  position: fixed;
-  inset: 0;
-  background: rgba(0, 0, 0, 0.7);
-  display: none;
-  align-items: center;
-  justify-content: center;
-  z-index: 9999;
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.7);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
 }
 
 .connect-modal {
-  background: #2a2a2a;
-  color: #fff;
-  padding: 24px 32px;
-  border-radius: 8px;
-  width: 300px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
-  text-align: center;
-  font-family: sans-serif;
+    background: #2a2a2a;
+    color: #fff;
+    padding: 24px 32px;
+    border-radius: 8px;
+    width: 300px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+    text-align: center;
+    font-family: sans-serif;
 }
 
 .connect-modal h2 {
-  margin-top: 0;
-  font-size: 20px;
+    margin-top: 0;
+    font-size: 20px;
 }
 
 .connect-modal p {
-  font-size: 14px;
-  margin: 12px 0 20px;
-  color: #ccc;
+    font-size: 14px;
+    margin: 12px 0 20px;
+    color: #ccc;
 }
 
 .modal-buttons {
-  display: flex;
-  justify-content: space-between;
-  gap: 12px;
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
 }
 
 .modal-buttons button {
-  flex: 1;
-  padding: 8px;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  font-weight: bold;
+    flex: 1;
+    padding: 8px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
 }
 
 .serial-btn {
-  background: #4caf50;
-  color: white;
+    background: #4caf50;
+    color: white;
 }
 
 .socket-btn {
-  background: #4c81af;
-  color: white;
+    background: #4c81af;
+    color: white;
 }
 
 .modal-error {
     color: #ff9191;
     margin: 12px 0 0;
+}
+
+.modal-error.modal-info {
+    color: #c6ded0;
 }
 
 .modal-error:empty {
